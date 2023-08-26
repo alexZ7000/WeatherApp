@@ -32,12 +32,19 @@ body, html{
     z-index: 1; /*mesmo deixando o z-index do video como -1, é sempre bom garantir que o layer deste elemento é 1*/
 }
 
+.envelope{
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
 .conteudo-clima{
     background: red;
 }
 
 .conteudo-musica{
-    background: blue;
+    background: green;
 }
 
 .caixa{
@@ -83,7 +90,7 @@ body, html{
     padding:0.5rem 0.5rem 0.5rem 3.1rem;
     border: none;
     border-radius: 100px;
-
+    box-shadow: 0 0 10px 2px; rgba(0, 0, 0, 0.25);
 }
 
 .conteudo-clima img{
