@@ -31,3 +31,61 @@ body, html{
     align-items: center; /*para alinhar o conteudo centralmente no eixo y*/
     z-index: 1; /*mesmo deixando o z-index do video como -1, é sempre bom garantir que o layer deste elemento é 1*/
 }
+
+.conteudo-clima{
+    background: red;
+}
+
+.conteudo-musica{
+    background: blue;
+}
+
+.caixa{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.procura{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+}
+
+.procura button{
+    margin: 0 .5rem 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4D54FF;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
+    transform: translate(53px, 0px);
+}
+
+.procura img{
+    width: 25px;
+    height: 25px;
+}
+
+.procura input{
+    height: 50px;
+    width: 300px;
+    padding:0.5rem 0.5rem 0.5rem 3.1rem;
+    border: none;
+    border-radius: 100px;
+
+}
+
+.conteudo-clima img{
+    height: 11.5rem; /*para diminuir o tamanho da imagem*/
+}
