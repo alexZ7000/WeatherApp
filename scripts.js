@@ -1,7 +1,7 @@
 const input = document.getElementById("input-busca")
-const apiKey = 'da057741bc696ee411fb52bc9eb151f6';
-const clientID = `bfbd8092df4049a59f14580111c0b5e1`
-const clientSecret = `813dbd1b7dc04ce4943dee3d873c5b3d`
+const apiKey = '';
+const clientID = ``
+const clientSecret = ``
 function movimentoInput(inputValue){
    const visibility = document.getElementById('input-busca').style.visibility
    inputValue && procurarCidade(inputValue);
