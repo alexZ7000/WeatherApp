@@ -1,17 +1,35 @@
-const input = document.getElementById("input-busca")
-const apiKey = '';
+let input;
+const apiKey = ``
 const clientID = ``
 const clientSecret = ``
-function movimentoInput(inputValue){
-   const visibility = document.getElementById('input-busca').style.visibility
-   inputValue && procurarCidade(inputValue);
-   visibility === 'hidden' ? abrirInput() : fecharInput(); /*if/else de uma linha só*/
+
+const waitDomLoad = () => {
+   input = document.getElementById("input-busca")
+   input.addEventListener('keyup', function (event){
+      if (event.keyCode === 13){
+         const valorInput = input.value;
+         movimentoInput(valorInput)
+      }
+   })
+
+   document.addEventListener("DOMContentLoaded", () => {/*Arrow function, pesquisar sobre isso*/
+      fecharInput()
+   })
 }
 
 function botaoDeBusca(){
    const inputValue = input.value;
    movimentoInput(inputValue)
 }
+
+
+function movimentoInput(inputValue ){
+   const visibility = document.getElementById('input-busca').style.visibility
+   inputValue && procurarCidade(inputValue);
+   visibility === 'hidden' ? abrirInput() : fecharInput(); /*if/else de uma linha só*/
+}
+
+
 
 function fecharInput(){
    input.style.width = '40px';
@@ -29,16 +47,6 @@ function abrirInput(){
    input.value = ""; /*limpar o texto escrito pelo usuario no Entry*/
 }
 
-input.addEventListener('keyup', function (event){
-   if (event.keyCode === 13){
-      const valorInput = input.value;
-      movimentoInput(valorInput)
-   }
-})
-
-document.addEventListener("DOMContentLoaded", () => {/*Arrow function, pesquisar sobre isso*/
-   fecharInput()
-})
 
 async function procurarCidade(inputValue){
    try{
@@ -51,7 +59,8 @@ async function procurarCidade(inputValue){
       else{
          throw new Error
       }
-   }catch{
+   }
+   catch{
       alert("A pesquisa deu errado")
    }
 }
@@ -82,21 +91,23 @@ async function obterAcessoToken(){
 
 async function obterTopAlbunsPorPais(country){
    try {
-   const accessToken = await obterAcessoToken();
-   const dataAtual = obterDataAtual();
-   const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&timestamp=${dataAtual}T09%3A00%3A00&limit=3`
-   const resultado = await fetch(`${url}`, {
-      headers: {
-         'Authorization': `Bearer ${accessToken}`
+      const accessToken = await obterAcessoToken();
+      const dataAtual = obterDataAtual();
+      const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&timestamp=${dataAtual}T09%3A00%3A00&limit=3`
+      const resultado = await fetch(`${url}`, {
+         headers: {
+            'Authorization': `Bearer ${accessToken}`
       }
    })
    if( resultado.status === 200){
-   const data = await resultado.json()
-   const result = data.playlists.items.map(item => ({
-      name: item.name,
-      image: item.images[0].url
-   }))// o método map percorre por todos os meus objetos
-   console.log(result)
+      const data = await resultado.json()
+      const result = data.playlists.items.map(item => ({
+               name: item.name,
+               image: item.images[0].url
+            }
+         )
+      )// o método map percorre por todos os meus objetos
+      console.log(result)
       mostrarMusicaNaTela(result);
    }
    else{
